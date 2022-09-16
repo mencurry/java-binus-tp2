@@ -2,10 +2,16 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // status program set default to true
+        // setup status to be true by default, then also setup scanner object
         boolean status = true;
-        // scanner
         Scanner scan = new Scanner(System.in);
+
+        // variable declaration
+        int banyakAngka = 0,
+                bedaAngka = 0,
+                aritmatika = 1,
+                geometri = 1,
+                faktorial = 1;
 
         // run program while the status is true
         while (status) {
@@ -13,48 +19,47 @@ public class Main {
             System.out.println("Belajar Deret Aritmatika, Geometri, dan menghitung Faktorial");
             System.out.println("============================================================");
 
-            // get and set banyakAngka, check validation using try catch
-            System.out.print("Masukkan banyak angka yang mau dicetak [2..10] \t: ");
-            int banyakAngka = scan.nextInt();
-            try {
-                if (banyakAngka < 2 || banyakAngka > 10) {
-                    throw new Exception("Hanya angka 2 - 10 yang bisa diinputkan");
+            // get and set banyakAngka, check validation using do while loop and try catch
+            do {
+                System.out.print("Masukkan banyak angka yang mau dicetak [2..10] \t: ");
+                try {
+                    banyakAngka = Integer.parseInt(scan.nextLine());
+                    if (banyakAngka < 2 || banyakAngka > 10) {
+                        System.out.println("Coba lagi, hanya angka 2 sampai dengan 10 yang bisa dimasukkan");
+                    }
+                } catch (Exception e) {
+                    System.out.println(e);
                 }
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            } while (banyakAngka < 2 || banyakAngka > 10);
 
-            // get and set bedaAngka, check validation using try catch
-            System.out.print("Masukkan beda masing-masing angka [2..9] \t\t: ");
-            int bedaAngka = scan.nextInt();
-            try {
-                if (bedaAngka < 2 || bedaAngka > 9) {
-                    throw new Exception("Hanya angka 2 - 9 yang bisa diinputkan");
+            // get and set bedaAngka, check validation using do while loop and try catch
+            do {
+                System.out.print("Masukkan beda masing-masing angka [2..9] \t\t: ");
+                try {
+                    bedaAngka = Integer.parseInt(scan.nextLine());
+                    if (bedaAngka < 2 || bedaAngka > 9) {
+                        System.out.println("Coba lagi, hanya angka 2 sampai dengan 10 yang bisa dimasukkan");
+                    }
+                } catch (Exception e) {
+                    System.out.println(e);
                 }
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
+            } while (bedaAngka < 2 || bedaAngka > 9);
 
-            // set aritmatika default value to 1, loop based on banyakAngka
-            // then aritmatika add equals to bedaAngka
-            int aritmatika = 1;
+            // loop based on banyakAngka, then aritmatika add equals to bedaAngka
             System.out.println("Deret Aritmatika : ");
             for(int x = 1; x <= banyakAngka; x++){
                 System.out.print(aritmatika + " ");
                 aritmatika += bedaAngka;
             }
 
-            // set geometri default value to 1, loop based on banyakAngka
-            // then geometri multiply equals to bedaAngka
-            int geometri = 1;
+            // loop based on banyakAngka, then geometri multiply equals to bedaAngka
             System.out.println("\nDeret Geometri : ");
             for(int x = 1; x <= banyakAngka; x++){
                 System.out.print(geometri + " ");
                 geometri *= bedaAngka;
             }
 
-            // set faktorial to 1 then multiply equals to banyakAngka
-            int faktorial = 1;
+            // every loop x = banyakAngka (e.g 5), then every loop it subtract x by 1, then multiply it by the next number
             System.out.println("\nFaktorial dari " + banyakAngka + " : ");
             for(int x = banyakAngka; x>=1; x--){
                 if (x == 1){
@@ -66,8 +71,6 @@ public class Main {
             }
             System.out.println(" = " + faktorial);
 
-            // had to add scan here, otherwise it bugs out
-            scan.nextLine();
             // print retry program
             System.out.print("Apakah anda mau ulangi programnya? [y/t] = ");
             String konfirmasi = scan.nextLine();
